@@ -11,9 +11,11 @@ https://cloudinary.com/documentation
 
 
 There is a lot of support for different languages, for Node.js here it is :
+
 https://www.npmjs.com/package/cloudinary
 
-And the Github repo:
+And its Github repo:
+
 https://github.com/cloudinary/cloudinary_npm
 
 
@@ -39,14 +41,14 @@ npm i cloudinary express-fileupload
 The first one is obviously the npm Cloudinary package, the second one is used to easily handle files upload.
 
 
-We will send our image using a form, to do that you need to specify that the encryption type will be `multipart/form-data` :
+We will send our image using a form, to do that we need to specify how the data will be encoded, we need it to be `multipart/form-data` :
 
 ```html
 
 <form action="/my/Post/Url" method="POST" enctype="multipart/form-data">
 
 ```
-Now in the backend to use cloudinary we first need to configure it, proceed the following using the values showed in the dashboard snapshot :
+Now in the backend, to use cloudinary, we first need to configure it, proceed the following using the values showed in the dashboard snapshot :
 
 ```js
 
@@ -75,8 +77,7 @@ The option `useTempFiles` is just used to store locally every file sent in a `tm
 
 This middleware will add a `files` property to the request object containing everything we need to handle the file.
 
-
-Now that the middleware is in place we can use it. Let's write the route to add an image to cloudinary AND create a database element containing the Cloudinary url. In this example I use a model called `Picture`.
+Now that the middleware is in place we can use it. Let's write the route to add an image to Cloudinary AND create a database element containing the Cloudinary url. In this example I use a model called `Picture`.
 
 ```js
 // pictures routes
@@ -115,7 +116,7 @@ That's it! You can now use Cloudinary to store images (indirectly) into your dat
 
 ## Comments on sample app, how to run it
 
-You need a file called `dev.env` in the `config` folder, it must contains the following, obviously adapted to your credentials :
+You need a file called `dev.env` in the `config` folder, it must contains the following, obviously adapted to your own credentials :
 
 
 ```bash
@@ -135,13 +136,10 @@ When this is done run the dev script :
 npm run dev
 ```
 
-It will launch the app with the environment variables and nodemon, check in `package.json` the exact command that is actually run :
+It will launch the app with the environment variables and nodemon, check in `package.json` to see the exact command that is actually run :
 ```bash
 env-cmd -f ./config/dev.env nodemon src/index.js
 ```
-
-
-
 
 
 
