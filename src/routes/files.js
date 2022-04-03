@@ -3,26 +3,15 @@ const router = express.Router();
 const cloudinary = require('cloudinary')
 const fileupload = require('express-fileupload')
 
-// const multer = require('multer')
-
-
-
-// cloudinary and multer config
+// cloudinary and fileupload config
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_SECRET_KEY
   });
-// const {CloudinaryStorage} = require("multer-storage-cloudinary");
 
-// const storage = new CloudinaryStorage({
-//   cloudinary: cloudinary,
-//   params: {
-//     folder: "DEV",
-//   },
-// });
+router.use(fileupload({useTempFiles: true}))
 
-// const upload = multer({ storage: storage })
 
 
 
@@ -33,9 +22,9 @@ router.get('/fakejson', (req, res) => {
 })
 
 
-router.post("/testupload", upload.single("image"), async (req, res) => {
+router.post("/testupload", async (req, res) => {
 	console.log("I'm in")
-	console.log(req.file)
+	console.log(req.files)
 	// try {
 	// 	console.log(req.files.image)
 	// } catch(err){
