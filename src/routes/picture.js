@@ -12,26 +12,26 @@ cloudinary.config({
 });
 
 
-// use express-fileupload middleware to easily have acces to
+// We use express-fileupload middleware to easily have acces to
 // the uploaded file. This middleware adds a 'files' entry to the request object
 // All the files data are now in `req.files`
+// (We will use tmp files to check if this is working)
 router.use(fileupload({useTempFiles: true}))
 
 
 // pictures routes
 router.post("/upload", async (req, res) => {
 
-	console.log('body : ', req.body)
-
 	try{
 
 		// `req.files` exists thanks to the express-fileupload middleware :
-		const fileStr = req.files.image;
+		const fileStr = req.files.image || "https://picsum.photos/300/600";
+		const title = req.body.title || ""
 
 		const uploadResponse = await cloudinary.uploader.upload(fileStr.tempFilePath,{});
 
 		const newPicture = new Picture({
-			title : "Hardcoded title",
+			title : title,
 			url: uploadResponse.url
 		})
 		await newPicture.save()
@@ -42,6 +42,14 @@ router.post("/upload", async (req, res) => {
 	}
 
 });
+
+// returns all Pictures in a JSON file
+router.get("/indexjson", (req, res)=>{
+  Picture.find({}, (err, allThePictures) => {
+    res.json({pictures: allThePictures });
+  })
+
+})
 
 
 module.exports  = router;
