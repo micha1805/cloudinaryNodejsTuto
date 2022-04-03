@@ -9,6 +9,10 @@ A very easy and practical way of storing images in your database is to use an ex
 
 ## Setup
 
+
+
+CHANGER MULTER (deprecated) ) express-fileupload
+
 Let's say you already have an Expres.js application running. If you want to use Cloudinary you need to install the following packages :
 
 ```bash
@@ -23,6 +27,13 @@ do NOT forget v2 while requiring cloudinary, it will not work witj multer proper
 ```js
 const cloudinary = require('cloudinary').v2
 ````
+
+In the form it is important to specifu you will use `multipart/form-data` :
+```html
+
+<form action="/my/Post/Url" method="POST" enctype="multipart/form-data">
+
+```
 
 
 ## Comments on sample app, how to run it

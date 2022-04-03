@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const cloudinary = require('cloudinary')
-const multer = require('multer')
+const fileupload = require('express-fileupload')
+
+// const multer = require('multer')
 
 
 
@@ -11,15 +13,16 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_SECRET_KEY
   });
-const {CloudinaryStorage} = require("multer-storage-cloudinary");
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: "DEV",
-  },
-});
+// const {CloudinaryStorage} = require("multer-storage-cloudinary");
 
-const upload = multer({ storage: storage })
+// const storage = new CloudinaryStorage({
+//   cloudinary: cloudinary,
+//   params: {
+//     folder: "DEV",
+//   },
+// });
+
+// const upload = multer({ storage: storage })
 
 
 
@@ -32,8 +35,14 @@ router.get('/fakejson', (req, res) => {
 
 router.post("/testupload", upload.single("image"), async (req, res) => {
 	console.log("I'm in")
-	// console.log(req.files.image)
-  return res.json({ picture: req.file.path });
+	console.log(req.file)
+	// try {
+	// 	console.log(req.files.image)
+	// } catch(err){
+	// 	console.log(error)
+	// }
+  // return res.json({ picture: req.file.path });
+  return res.json({ message: "NOOOO" });
 });
 
 
