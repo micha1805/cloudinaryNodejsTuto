@@ -2,3 +2,7 @@
 node_modules
 .DS_Store
 config
+# exclude everything
+config/*
+# exception to the rule
+!config/.gitkeep

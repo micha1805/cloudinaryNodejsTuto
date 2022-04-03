@@ -2,6 +2,8 @@ require('dotenv').config()
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const expressEjsLayout = require('express-ejs-layouts')
+const path = require('path');
 
 // const cloudinary = require("cloudinary");
 // const multer = require('multer')
@@ -9,10 +11,7 @@ const app = express();
 // const fileupload = require('express-fileupload')
 
 //mongoose
-mongoose.connect(process.env.MONGOOSE_URL,{useNewUrlParser: true, useUnifiedTopology : true})
-.then(() => console.log('connected,,'))
-.catch((err)=> console.log(err));
-
+require('./db/mongoose')
 
 //CLOUDINARY
 
@@ -24,10 +23,11 @@ mongoose.connect(process.env.MONGOOSE_URL,{useNewUrlParser: true, useUnifiedTopo
 
 
 //EJS
+app.set("views", path.join(__dirname, "views"));
 app.set('view engine','ejs');
 
 // app.use(fileupload({useTempFiles: true}))
-app.use("/static", express.static("public"));
+app.use("/static", express.static("src/public"));
 
 
 
@@ -37,5 +37,4 @@ app.use('/', (req, res) => {
 })
 
 
-
-app.listen(3000);
+module.exports = app
