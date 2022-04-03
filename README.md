@@ -140,18 +140,3 @@ It will launch the app with the environment variables and nodemon, check in `pac
 ```bash
 env-cmd -f ./config/dev.env nodemon src/index.js
 ```
-
-
-
-
-
-
-
-
-
-NEXT STEPS
-
-store fileurl to db
-display all images in the home page
-some styling
-separer cloudinary mongo dans un require
