@@ -30,7 +30,7 @@ We need 3 infos, they are in your Cloudinary Dashboard :
 
 ## Setup
 
-(The sample app uses mongodb Atlas. I won't explain it's configuration.)
+(The sample app uses mongodb Atlas. I won't explain its configuration.)
 
 Let's say you already have an Expres.js application running. If you want to use Cloudinary you need to install the following packages :
 
@@ -114,7 +114,7 @@ router.post("/my/Post/Url", async (req, res) => {
 That's it! You can now use Cloudinary to store images (indirectly) into your database.
 
 
-## Comments on sample app, how to run it
+## Comments on the sample app, how to run it
 
 You need a file called `dev.env` in the `config` folder, it must contains the following, obviously adapted to your own credentials :
 
