@@ -19,7 +19,7 @@ app.use("/static", express.static("src/public"));
 
 //Routes
 app.use('/',require('./routes/pages'));
-app.use('/files',require('./routes/files'));
+app.use('/upload',require('./routes/upload'));
 
 
 
