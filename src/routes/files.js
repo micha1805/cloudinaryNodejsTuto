@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const cloudinary = require('cloudinary')
 const fileupload = require('express-fileupload')
+const Picture = require("../models/picture").Picture
 
 // cloudinary and fileupload config
 cloudinary.config({
@@ -23,15 +24,53 @@ router.get('/fakejson', (req, res) => {
 
 
 router.post("/testupload", async (req, res) => {
-	console.log("I'm in")
-	console.log(req.files)
-	// try {
-	// 	console.log(req.files.image)
-	// } catch(err){
-	// 	console.log(error)
-	// }
-  // return res.json({ picture: req.file.path });
-  return res.json({ message: "NOOOO" });
+	// console.log("I'm in")
+	// console.log(req.files)
+	// // try {
+	// // 	console.log(req.files.image)
+	// // } catch(err){
+	// // 	console.log(error)
+	// // }
+ //  // return res.json({ picture: req.file.path });
+
+
+ //  return res.json({ message: "NOOOO" });
+
+
+ // console.log(req.body)
+
+  try{
+
+    const fileStr = req.files.image;
+
+    const uploadResponse = await cloudinary.uploader.upload(fileStr.tempFilePath,{});
+
+    console.log(uploadResponse);
+
+    const url = uploadResponse.url
+
+
+    const newPicture = new Picture({
+      title : "Hardcoded title",
+      url: url
+    })
+    await newPicture.save()
+    res.redirect('/')
+  }catch(err){
+    console.log("ERROR : ", err)
+    res.redirect("/")
+  }
+
+
+
+
+
+
+
+
+
+
+
 });
 
 
