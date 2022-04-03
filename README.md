@@ -18,6 +18,12 @@ npm i cloudinary multer multer-storage-cloudinary
 
 `multer` is needed to make the file upload easier, and `multer-cloudinary` is an extension dedicated to cloudinary.
 
+do NOT forget v2 while requiring cloudinary, it will not work witj multer properly :
+
+```js
+const cloudinary = require('cloudinary').v2
+````
+
 
 ## Comments on sample app, how to run it
 
@@ -46,3 +52,19 @@ It will launch the app with the environment variables and nodemon, check in `pac
 env-cmd -f ./config/dev.env nodemon src/index.js
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+NEXT STEPS
+
+store fileurl to db
+display all images in the home page
+some styling
