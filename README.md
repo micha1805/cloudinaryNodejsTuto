@@ -69,6 +69,7 @@ Before writing the route's behaviour we need to tell Express.js that we want to 
 
 ```js
 const router = express.Router();
+const fileupload = require('express-fileupload')
 
 router.use(fileupload({useTempFiles: true}))
 ```
